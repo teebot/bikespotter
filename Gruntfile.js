@@ -426,5 +426,5 @@ module.exports = function (grunt) {
     'build'
   ]);
 
-    grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-compass');
 };

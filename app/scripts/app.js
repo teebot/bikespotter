@@ -5,7 +5,8 @@ angular
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngRoute'
+    'ngRoute',
+    'geolocation'
   ])
   .config(function ($routeProvider) {
     $routeProvider
