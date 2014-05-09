@@ -6,7 +6,8 @@ angular
     'ngResource',
     'ngSanitize',
     'ngRoute',
-    'geolocation'
+    'geolocation',
+    'bikeservices'
   ])
   .config(function ($routeProvider) {
     $routeProvider
