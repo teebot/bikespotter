@@ -4,38 +4,62 @@ var bikeService = angular.module('bikeservices', ['ngResource']);
 
 bikeService.factory('Stations', function Station(geolocation, $http) {
 
-    var stationsList = [];
 
-    /**
-     * Constructor, with class name
-     */
-    function Station(rawStation) {
-        // Public properties, assigned to the instance ('this')
+    function StationModel(rawStation, position) {
         this.stationName = rawStation.stationName;
         this.lat = rawStation.latitude;
         this.lng = rawStation.longitude;
         this.bikes = rawStation.availableBikes;
-        this.slots = rawStation.availableSlots;
+        this.docks = rawStation.availableDocks;
+        this.distance = distance(rawStation.latitude, rawStation.longitude, position.lat, position.lng);
     }
 
-    geolocation.getLocation().then(function(data){
-        var coords = {lat:data.coords.latitude, long:data.coords.longitude};
+    var getList = function() {
+        var stationsList = [];
 
-        $http.get('scripts/bikeshare.json').then(function (response) {
+        return geolocation.getLocation().then(function(data){
+            //var position = {lat:data.coords.latitude, lng:data.coords.longitude};
+            var position = { lat: 37.3335517, lng: -121.8785649};
+            return $http.get('scripts/bikeshare.json').then(function (response) {
+                var stations = response.data.stationBeanList;
+                stationsList = stations.map(function(rawStation) {
+                    return new StationModel(rawStation, position);
+                });
 
-            var stations = response.data.stationBeanList;
-            stationsList = stations.map(function(rawStation) {
-                return new Station(rawStation);
+                stationsList = stationsList.sort(function (a, b) {
+                    if (a.distance > b.distance)
+                      return 1;
+                    if (a.distance < b.distance)
+                      return -1;
+                    // a must be equal to b
+                    return 0;
+                });
+
+                return stationsList;
             });
-
-            console.log(stations);
-
-            for (var i = 0; i < stations.length; i++)
-            {
-                stationsList.push(stations[i].stationName);
-            }
         });
-    });
 
-    return stationsList;
+
+    }
+
+    return {
+        getList : getList
+    }
 });
+
+
+function distance(lat1, lon1, lat2, lon2, unit) {
+    var radlat1 = Math.PI * lat1/180;
+    var radlat2 = Math.PI * lat2/180;
+    var radlon1 = Math.PI * lon1/180;
+    var radlon2 = Math.PI * lon2/180;
+    var theta = lon1-lon2;
+    var radtheta = Math.PI * theta/180;
+    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+    dist = Math.acos(dist);
+    dist = dist * 180/Math.PI;
+    dist = dist * 60 * 1.1515;
+    if (unit === 'K') { dist = dist * 1.609344; }
+    if (unit === 'N') { dist = dist * 0.8684; }
+    return dist;
+}

@@ -8,8 +8,8 @@ angular.module('bikespotterApp')
       'Karma'
     ];
 
-        // not downloaded yet
-    $scope.stations = Stations;
-
+    Stations.getList().then(function(response) {
+        $scope.stations = response;
+    });
 
   });
