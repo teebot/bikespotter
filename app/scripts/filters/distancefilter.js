@@ -14,6 +14,6 @@ angular.module('bikespotterApp')
             return Math.round(inFeet) + ' ft';
         }
 
-      return (distanceInMiles.toFixed(1) + ' mi').replace(".0", "");
+      return (distanceInMiles.toFixed(1) + ' mi').replace('.0', '');
     };
   });

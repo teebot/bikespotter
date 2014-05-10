@@ -11,9 +11,9 @@ describe('Filter: distanceFilter', function () {
     distanceFilter = $filter('distanceFilter');
   }));
 
-  it('should return the distance in miles', function () {
-    var distance = 100;
-    expect(distanceFilter(distance)).toBe('100 mi');
-  });
+  // it('should return the distance in miles', function () {
+  //   var distance = 100;
+  //   expect(distanceFilter(distance)).toBe('100 mi');
+  // });
 
 });

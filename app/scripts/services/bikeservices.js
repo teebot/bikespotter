@@ -2,7 +2,7 @@
 
 var bikeServices = angular.module('bikeservices', ['ngResource']);
 
-bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory, $q) {
+bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory) {
 
     // tests can point to local copy 'scripts/bikeshare.json'
     // note: jsonp.jit.su is a proxy to add CORS headers
@@ -40,9 +40,8 @@ bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory, $q
         var stationsList;
 
         return geolocation.getLocation().then(function(data){
-            //var position = {lat:data.coords.latitude, lng:data.coords.longitude};
-            // TESTING VALUES
-            var position = { lat: 37.7857158, lng: -122.4059115};
+            var position = {lat:data.coords.latitude, lng:data.coords.longitude};
+            // var position = { lat: 37.7857158, lng: -122.4059115};
             var cachedStations = cache.get('stationsData');
             if(cachedStations)
             {
@@ -82,11 +81,15 @@ bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory, $q
         return this.all().then(function(data){
 
             var results = [];
-            $.each(data, function (index, value) {
-                if (value.id === stationId) {
-                    results.push(value);
+            if(data.length)
+            {
+                for(var i = 0; i < data.length; i++)
+                {
+                    if (data[i].id === stationId) {
+                        results.push(data[i]);
+                    }
                 }
-            });
+            }
             return results[0];
         });
     };
