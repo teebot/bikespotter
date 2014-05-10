@@ -38,9 +38,8 @@ header {
 
 
 .station {
-    border-top:1px solid $light-gray;
-    border-left:1px solid $light-gray;
-    border-right:1px solid $light-gray;
+    border:1px solid $light-gray;
+    border-bottom:0;
     padding:12px;
     cursor:pointer;
 
