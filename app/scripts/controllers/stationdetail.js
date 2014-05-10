@@ -7,6 +7,15 @@ angular.module('bikespotterApp')
 
     Stations.get(reqStationId).then(function(response) {
         $scope.station = response;
+
+        $scope.mapMarkers = [{
+            color: 'blue',
+            label: 'h',
+            coords: [response.lat, response.lng]
+        }];
+
+        console.log('map rendered');
+
     });
 
   });
