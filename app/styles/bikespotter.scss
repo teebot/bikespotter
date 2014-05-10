@@ -5,6 +5,7 @@
 $highlight-color: #F7E9BA;
 $light-gray: #eee;
 $frame-color: #016ED3;
+$transitions-duration: 250ms;
 
 html{
   height: 100%;
@@ -128,14 +129,10 @@ header {
 
 
 
-
-
-
-
-/* slideLeft */
-.slideLeft {
+/* transitions */
+.slideLeft, .slideRight {
     transition-timing-function: ease;
-    transition-duration: 250ms;
+    transition-duration: $transitions-duration;
 }
 
 .slideLeft.ng-enter {
@@ -157,3 +154,28 @@ header {
     transition-property: all;
     transform: translate3d(-100%,0,0);
 }
+
+
+
+.slideRight.ng-enter {
+    transition-property: none;
+    transform: translate3d(-100%,0,0);
+}
+
+.slideRight.ng-enter.ng-enter-active {
+    transition-property: all;
+    transform: translate3d(0,0,0);
+}
+
+.slideRight.ng-leave {
+    transition-property: all;
+    transform: translate3d(0,0,0);
+}
+
+.slideRight.ng-leave.ng-leave-active {
+    transition-property: all;
+    transform: translate3d(100%,0,0);
+}
+
+.main-view.ng-leave  { z-index:9999; }
+.main-view.ng-enter  { z-index:8888; }

@@ -16,4 +16,6 @@ angular.module('bikespotterApp')
         $location.path(path);
     };
 
+    $scope.transition = 'slideLeft';
+
   });

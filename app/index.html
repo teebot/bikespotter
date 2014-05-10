@@ -23,7 +23,7 @@
     <![endif]-->
     <header><h1>Bay Area Bike Share</h1></header>
     <!-- Add your site or application content here -->
-    <div class="main-view" ng-view=""></div>
+    <div class="main-view {{transition}}" ng-view=""></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -62,6 +62,7 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angularjs-geolocation/src/geolocation.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
