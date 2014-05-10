@@ -25,6 +25,8 @@ bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory, $q
     function StationModel(rawStation, position) {
         this.id = rawStation.id;
         this.stationName = rawStation.stationName;
+        this.stAddress1 = rawStation.stAddress1;
+        this.stAddress2 = rawStation.stAddress2;
         this.lat = rawStation.latitude;
         this.lng = rawStation.longitude;
         this.bikes = rawStation.availableBikes;

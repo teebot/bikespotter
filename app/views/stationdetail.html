@@ -1,10 +1,20 @@
 <p>{{station.stationName}}</p>
 
+<br />
+{{station.stAddress1}}
+<br />
+{{station.stAddress2}}
 
-<!-- <static-gmap size="137x137" markers="mapMarkers" sensor="false" zoom="14"></static-gmap> -->
-<static-gmap
-    size="640x200"
-    sensor="false"
-    zoom="14"
-    markers="{ color: 'red', label: 'X', coords: [61.133789, 10.401121] }">
-</static-gmap>
+<br />
+{{station.bikes}} bikes
+<br />
+{{station.docks}} docks
+
+
+<br />
+
+<img ng-show="station" src="http://maps.googleapis.com/maps/api/staticmap?zoom=14&size=600x300&maptype=roadmap
+&markers=color:red%7Clabel:%7C{{station.lat}},{{station.lng}}&sensor=false" />
+
+<br />
+<a href="#/">back to list</a>

@@ -7,8 +7,7 @@ angular
     'ngSanitize',
     'ngRoute',
     'geolocation',
-    'bikeservices',
-    'wu.staticGmap'
+    'bikeservices'
   ])
   .config(function ($routeProvider) {
     $routeProvider
