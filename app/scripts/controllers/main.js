@@ -8,7 +8,7 @@ angular.module('bikespotterApp')
       'Karma'
     ];
 
-    Stations.getList().then(function(response) {
+    Stations.all().then(function(response) {
         $scope.stations = response;
     });
 

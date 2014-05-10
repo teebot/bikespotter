@@ -4,8 +4,9 @@
 
 var bikeServices = angular.module('bikeservices', ['ngResource']);
 
-bikeServices.factory('Stations', function (geolocation, $http) {
+bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory, $q) {
 
+    var cache = $cacheFactory('bikeServicesCache');
 
     function distance(lat1, lon1, lat2, lon2, unit) {
         var radlat1 = Math.PI * lat1/180;
@@ -31,40 +32,66 @@ bikeServices.factory('Stations', function (geolocation, $http) {
         this.distance = distance(rawStation.latitude, rawStation.longitude, position.lat, position.lng);
     }
 
-    var getList = function() {
-        var stationsList = [];
+    var all = function() {
+        var stationsList;
 
         return geolocation.getLocation().then(function(data){
             //var position = {lat:data.coords.latitude, lng:data.coords.longitude};
             // TESTING VALUES
             var position = { lat: 37.7857158, lng: -122.4059115};
+            var cachedStations = cache.get('stationsData');
+            if(cachedStations)
+            {
+                console.log('retrieved from cache');
+                return cachedStations;
+            }
+
             return $http.get('scripts/bikeshare.json').then(function (response) {
+
                 var stations = response.data.stationBeanList;
+
+                // data transform
                 stationsList = stations.map(function(rawStation) {
                     return new StationModel(rawStation, position);
                 });
 
+                // ordering
                 stationsList = stationsList.sort(function (a, b) {
                     if (a.distance > b.distance) {
                       return 1;
-                    }
-                    if (a.distance < b.distance) {
+                  }
+                  if (a.distance < b.distance) {
                       return -1;
-                    }
+                  }
                     // a must be equal to b
                     return 0;
                 });
 
+                cache.put('stationsData', stationsList);
                 return stationsList;
             });
         });
+    };
 
+    var get = function(stationId)
+    {
+        return this.all().then(function(data){
 
+            var results = [];
+            $.each(data, function (index, value) {
+                if (value.id === stationId) {
+                    results.push(value);
+                }
+            });
+            return results[0];
+        });
     };
 
     return {
-        getList : getList
+        all : all,
+        get : get
     };
+
 });
 
 
