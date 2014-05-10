@@ -1,20 +1,20 @@
-
-<div class="row">
-    <div class="station" ng-repeat="station in stations">
-        <div ng-click="go('/stationDetail/' + station.id)">
-            <div class="station-title">
-                <div class="station-title-name">{{station.stationName}}</div>
-                <div class="station-title-caption">{{station.distance | distanceFilter}}</div>
+<div class="container">
+    <div class="row">
+        <div class="station" ng-repeat="station in stations">
+            <div ng-click="go('/stationDetail/' + station.id)">
+                <div class="station-title">
+                    <div class="station-title-name">{{station.stationName}}</div>
+                    <div class="station-title-caption">{{station.distance | distanceFilter}}</div>
+                </div>
+                <div class="station-data">
+                    <span class="highlight">{{station.bikes}}</span> / {{station.docks}}
+                </div>
+                <div class="clearfix"></div>
             </div>
-            <div class="station-data">
-                <span class="station-data-bikes">{{station.bikes}}</span> / {{station.docks}}
-            </div>
-            <div class="clearfix"></div>
         </div>
     </div>
-</div>
 
-<div class="footer">
-  <p>made with <span class="glyphicon glyphicon-heart"></span> by @teebot</p>
+    <div class="footer">
+      <p>made with <span class="glyphicon glyphicon-heart"></span> by @teebot</p>
+    </div>
 </div>
-

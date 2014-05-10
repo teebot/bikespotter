@@ -385,12 +385,6 @@ module.exports = function (grunt) {
           remote: 'https://github.com/teebot/teebot.github.io.git',
           branch: 'master'
         }
-      },
-      local: {
-        options: {
-          remote: '../',
-          branch: 'build'
-        }
       }
     }
   });

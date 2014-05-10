@@ -6,8 +6,14 @@ $highlight-color: #F7E9BA;
 $light-gray: #eee;
 $frame-color: #016ED3;
 
+html{
+  height: 100%;
+}
+
 body {
     font-family: 'Lato', sans-serif;
+    border:1px solid $frame-color;
+    min-height: 100%;
 }
 
 header {
@@ -24,8 +30,9 @@ header {
     }
 }
 
-.container {
-    border:1px solid $frame-color;
+.highlight {
+    font-weight:bold;
+    color: $frame-color;
 }
 
 
@@ -42,8 +49,12 @@ header {
         .station-title-name {
             font-weight:bold;
             font-size:18px;
-            max-width: 320px;
+            max-width: 270px;
             @include ellipsis
+        }
+
+        .station-title-caption {
+            color:gray;
         }
     }
 
@@ -51,12 +62,11 @@ header {
         float:right;
         font-size: 18px;
         margin-top:10px;
-
-        .station-data-bikes {
-            font-weight:bold;
-            color: $frame-color;
-        }
     }
+}
+
+.station:first-child {
+    border-top:0;
 }
 
 .station:last-child {
@@ -67,4 +77,83 @@ header {
     background: $highlight-color;
 }
 
+
+
+
+.station-detail {
+    h1 {
+        font-weight:bold;
+        font-size:24px;
+        margin: 16px 0 16px 0;
+        @include ellipsis;
+    }
+
+    .station-detail-data {
+        margin:16px 0;
+        font-size:18px;
+    }
+}
+
+
+.back-to-list {
+    padding:14px;
+    background:#f6f6f6;
+
+    a {
+        color: #777;
+        display:block;
+        font-weight:bold;
+        font-size:18px;
+        text-decoration:none;
+    }
+
+    .back-to-list-icon {
+        display:inline-block;
+        margin-right:12px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 .clearfix { clear:both; }
+
+
+
+
+
+
+
+
+/* slideLeft */
+.slideLeft {
+    transition-timing-function: ease;
+    transition-duration: 250ms;
+}
+
+.slideLeft.ng-enter {
+    transition-property: none;
+    transform: translate3d(100%,0,0);
+}
+
+.slideLeft.ng-enter.ng-enter-active {
+    transition-property: all;
+    transform: translate3d(0,0,0);
+}
+
+.slideLeft.ng-leave {
+    transition-property: all;
+    transform: translate3d(0,0,0);
+}
+
+.slideLeft.ng-leave.ng-leave-active {
+    transition-property: all;
+    transform: translate3d(-100%,0,0);
+}

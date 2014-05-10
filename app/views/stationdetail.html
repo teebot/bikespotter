@@ -1,20 +1,21 @@
-<p>{{station.stationName}}</p>
+<div class="container">
+    <div class="station-detail">
 
-<br />
-{{station.stAddress1}}
-<br />
-{{station.stAddress2}}
+        <h1>{{station.stationName}}</h1>
 
-<br />
-{{station.bikes}} bikes
-<br />
-{{station.docks}} docks
+        <img ng-show="station" src="http://maps.googleapis.com/maps/api/staticmap?zoom=16&size=290x120&maptype=roadmap
+        &markers=color:red%7Clabel:%7C{{station.lat}},{{station.lng}}&sensor=false" />
 
 
-<br />
+        <div class="station-detail-data">
+            <span class="highlight">{{station.bikes}}</span> available bikes
+            <br />
+            {{station.docks}} available docks
+        </div>
 
-<img ng-show="station" src="http://maps.googleapis.com/maps/api/staticmap?zoom=14&size=290x110&maptype=roadmap
-&markers=color:red%7Clabel:%7C{{station.lat}},{{station.lng}}&sensor=false" />
+    </div>
+</div>
 
-<br />
-<a href="#/">back to list</a>
+<div class="back-to-list">
+    <a href="#/"><span class="glyphicon glyphicon-arrow-left back-to-list-icon"></span> Back to list</a>
+</div>
