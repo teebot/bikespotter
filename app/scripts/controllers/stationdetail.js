@@ -13,9 +13,6 @@ angular.module('bikespotterApp')
             label: 'h',
             coords: [response.lat, response.lng]
         }];
-
-        console.log('map rendered');
-
     });
 
   });

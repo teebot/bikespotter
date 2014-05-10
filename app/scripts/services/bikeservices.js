@@ -1,10 +1,12 @@
 'use strict';
 
-
-
 var bikeServices = angular.module('bikeservices', ['ngResource']);
 
 bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory, $q) {
+
+    // tests can point to local copy 'scripts/bikeshare.json'
+    // note: jsonp.jit.su is a proxy to add CORS headers
+    var ENDPOINT_URL = 'http://jsonp.jit.su/?callback=&url=http%3A%2F%2Fbayareabikeshare.com%2Fstations%2Fjson%2F';
 
     var cache = $cacheFactory('bikeServicesCache');
 
@@ -48,7 +50,7 @@ bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory, $q
                 return cachedStations;
             }
 
-            return $http.get('scripts/bikeshare.json').then(function (response) {
+            return $http.get(ENDPOINT_URL).then(function (response) {
 
                 var stations = response.data.stationBeanList;
 
