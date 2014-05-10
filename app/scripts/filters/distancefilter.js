@@ -3,6 +3,11 @@
 angular.module('bikespotterApp')
   .filter('distanceFilter', function () {
     return function (distanceInMiles) {
+        if(!distanceInMiles || isNaN(distanceInMiles))
+        {
+            return;
+        }
+
         if(distanceInMiles < 0.1)
         {
             var inFeet = distanceInMiles * 5280;

@@ -1,9 +1,25 @@
 'use strict';
 
+
+
 var bikeService = angular.module('bikeservices', ['ngResource']);
 
-bikeService.factory('Stations', function Station(geolocation, $http) {
+bikeService.factory('Stations', function (geolocation, $http) {
 
+
+    function distance(lat1, lon1, lat2, lon2, unit) {
+        var radlat1 = Math.PI * lat1/180;
+        var radlat2 = Math.PI * lat2/180;
+        var theta = lon1-lon2;
+        var radtheta = Math.PI * theta/180;
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        dist = Math.acos(dist);
+        dist = dist * 180/Math.PI;
+        dist = dist * 60 * 1.1515;
+        if (unit === 'K') { dist = dist * 1.609344; }
+        if (unit === 'N') { dist = dist * 0.8684; }
+        return dist;
+    }
 
     function StationModel(rawStation, position) {
         this.stationName = rawStation.stationName;
@@ -28,10 +44,12 @@ bikeService.factory('Stations', function Station(geolocation, $http) {
                 });
 
                 stationsList = stationsList.sort(function (a, b) {
-                    if (a.distance > b.distance)
+                    if (a.distance > b.distance) {
                       return 1;
-                    if (a.distance < b.distance)
+                    }
+                    if (a.distance < b.distance) {
                       return -1;
+                    }
                     // a must be equal to b
                     return 0;
                 });
@@ -41,26 +59,11 @@ bikeService.factory('Stations', function Station(geolocation, $http) {
         });
 
 
-    }
+    };
 
     return {
         getList : getList
-    }
+    };
 });
 
 
-function distance(lat1, lon1, lat2, lon2, unit) {
-    var radlat1 = Math.PI * lat1/180;
-    var radlat2 = Math.PI * lat2/180;
-    var radlon1 = Math.PI * lon1/180;
-    var radlon2 = Math.PI * lon2/180;
-    var theta = lon1-lon2;
-    var radtheta = Math.PI * theta/180;
-    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-    dist = Math.acos(dist);
-    dist = dist * 180/Math.PI;
-    dist = dist * 60 * 1.1515;
-    if (unit === 'K') { dist = dist * 1.609344; }
-    if (unit === 'N') { dist = dist * 0.8684; }
-    return dist;
-}
