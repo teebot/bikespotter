@@ -1,0 +1,70 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+@import "compass/utilities";
+
+
+$highlight-color: #F7E9BA;
+$light-gray: #eee;
+$frame-color: #016ED3;
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+header {
+    background:$frame-color;
+    color:white;
+    padding:12px;
+    text-align:center;
+
+    h1 {
+        margin:0;
+        padding:0;
+        font-size:22px;
+        font-weight:bold;
+    }
+}
+
+.container {
+    border:1px solid $frame-color;
+}
+
+
+.station {
+    border-top:1px solid $light-gray;
+    border-left:1px solid $light-gray;
+    border-right:1px solid $light-gray;
+    padding:12px;
+    cursor:pointer;
+
+    .station-title {
+        float:left;
+
+        .station-title-name {
+            font-weight:bold;
+            font-size:18px;
+            max-width: 320px;
+            @include ellipsis
+        }
+    }
+
+    .station-data {
+        float:right;
+        font-size: 18px;
+        margin-top:10px;
+
+        .station-data-bikes {
+            font-weight:bold;
+            color: $frame-color;
+        }
+    }
+}
+
+.station:last-child {
+    border-bottom:1px solid $light-gray;
+}
+
+.station:hover {
+    background: $highlight-color;
+}
+
+.clearfix { clear:both; }

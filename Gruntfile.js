@@ -383,7 +383,7 @@ module.exports = function (grunt) {
       pages: {
         options: {
           remote: 'https://github.com/teebot/teebot.github.io.git',
-          branch: 'gh-pages'
+          branch: 'master'
         }
       },
       local: {

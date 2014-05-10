@@ -15,7 +15,6 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 
 /* Space out content a bit */
 body {
-    padding-top: 20px;
     padding-bottom: 20px;
 }
 
@@ -25,6 +24,7 @@ body {
 .footer {
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 45px;
 }
 
 /* Custom page header */
@@ -93,3 +93,6 @@ body {
         border-bottom: 0;
     }
 }
+
+
+@import "bikespotter.scss";
