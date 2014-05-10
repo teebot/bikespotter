@@ -6,17 +6,20 @@ describe('Controller: MainCtrl', function () {
   beforeEach(module('bikespotterApp'));
 
   var MainCtrl,
-    scope;
+    scope, rootScope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
+    rootScope =$rootScope;
     MainCtrl = $controller('MainCtrl', {
-      $scope: scope
+      $scope: scope,
+      $rootscope: rootScope
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
-  });
+  //it('should list stations', function () {
+    //rootScope.$apply();
+    //expect(scope.stations.length).toBe(69);
+  //});
 });

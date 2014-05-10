@@ -15,6 +15,10 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/stationDetail/:id', {
+        templateUrl: 'views/stationdetail.html',
+        controller: 'StationDetailCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: Bikeservice', function () {
+describe('Service: Stations', function () {
 
   // load the service's module
-  beforeEach(module('bikespotterApp'));
+  beforeEach(module('bikeservices'));
 
   // instantiate service
-  var Bikeservice;
-  beforeEach(inject(function (_Bikeservice_) {
-    Bikeservice = _Bikeservice_;
+  var Stations;
+  beforeEach(inject(function (_Stations_) {
+    Stations = _Stations_;
   }));
 
-  it('should do something', function () {
-    expect(!!Bikeservice).toBe(true);
-  });
+  // it('should do something', function () {
+  //   expect(!!Stations).toBe(true);
+  // });
 
 });

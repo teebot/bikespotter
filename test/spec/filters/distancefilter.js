@@ -11,9 +11,9 @@ describe('Filter: distanceFilter', function () {
     distanceFilter = $filter('distanceFilter');
   }));
 
-  it('should return the input prefixed with "distanceFilter filter:"', function () {
-    var text = 'angularjs';
-    expect(distanceFilter(text)).toBe('distanceFilter filter: ' + text);
+  it('should return the distance in miles', function () {
+    var distance = 100;
+    expect(distanceFilter(distance)).toBe('100 mi');
   });
 
 });

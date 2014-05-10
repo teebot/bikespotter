@@ -2,9 +2,9 @@
 
 
 
-var bikeService = angular.module('bikeservices', ['ngResource']);
+var bikeServices = angular.module('bikeservices', ['ngResource']);
 
-bikeService.factory('Stations', function (geolocation, $http) {
+bikeServices.factory('Stations', function (geolocation, $http) {
 
 
     function distance(lat1, lon1, lat2, lon2, unit) {
@@ -22,6 +22,7 @@ bikeService.factory('Stations', function (geolocation, $http) {
     }
 
     function StationModel(rawStation, position) {
+        this.id = rawStation.id;
         this.stationName = rawStation.stationName;
         this.lat = rawStation.latitude;
         this.lng = rawStation.longitude;
