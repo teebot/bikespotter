@@ -1,7 +1,7 @@
 
 <div class="row">
     <ul class="stations">
-        <li ng-repeat="station in stations">{{station.stationName}} {{station.distance}}</li>
+        <li ng-repeat="station in stations">{{station.stationName}} {{station.distance | distanceFilter}} {{station.bikes}}/{{station.docks}}</li>
     </ul>
 </div>
 

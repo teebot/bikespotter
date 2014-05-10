@@ -19,7 +19,8 @@ bikeService.factory('Stations', function Station(geolocation, $http) {
 
         return geolocation.getLocation().then(function(data){
             //var position = {lat:data.coords.latitude, lng:data.coords.longitude};
-            var position = { lat: 37.3335517, lng: -121.8785649};
+            // TESTING VALUES
+            var position = { lat: 37.7857158, lng: -122.4059115};
             return $http.get('scripts/bikeshare.json').then(function (response) {
                 var stations = response.data.stationBeanList;
                 stationsList = stations.map(function(rawStation) {
