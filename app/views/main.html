@@ -1,6 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="station" ng-repeat="station in stations">
+            <a id="{{station.id}}"></a>
             <div ng-click="go('/stationDetail/' + station.id)">
                 <div class="station-title">
                     <div class="station-title-name">{{station.stationName}}</div>
