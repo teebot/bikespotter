@@ -5,7 +5,7 @@
 $highlight-color: #F7E9BA;
 $light-gray: #eee;
 $frame-color: #016ED3;
-$transitions-duration: 400ms;
+$transitions-duration: 300ms;
 
 html{
   height: 100%;
@@ -149,7 +149,7 @@ header {
 .slideLeft.ng-enter.ng-enter-active {
     transition-property: all;
     transform: translate3d(0,0,0);
-    opacity:1;
+    opacity:0;
 }
 
 .slideLeft.ng-leave {
