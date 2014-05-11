@@ -45,11 +45,12 @@ header {
 
     .station-title {
         float:left;
+        width:80%;
 
         .station-title-name {
             font-weight:bold;
             font-size:18px;
-            max-width: 270px;
+
             @include ellipsis
         }
 
@@ -128,7 +129,8 @@ header {
 
 
 
-/* transitions */
+/*** transitions ***/
+
 .slideLeft, .slideRight {
     transition-timing-function: ease;
     transition-duration: $transitions-duration;
@@ -137,21 +139,27 @@ header {
 .slideLeft.ng-enter {
     transition-property: none;
     transform: translate3d(100%,0,0);
+    opacity:0;
+    z-index:100;
 }
 
 .slideLeft.ng-enter.ng-enter-active {
     transition-property: all;
     transform: translate3d(0,0,0);
+    opacity:1;
 }
 
 .slideLeft.ng-leave {
     transition-property: all;
     transform: translate3d(0,0,0);
+    z-index:101;
+    opacity:1;
 }
 
 .slideLeft.ng-leave.ng-leave-active {
     transition-property: all;
     transform: translate3d(-100%,0,0);
+    opacity:0;
 }
 
 
@@ -159,22 +167,24 @@ header {
 .slideRight.ng-enter {
     transition-property: none;
     transform: translate3d(-100%,0,0);
+    opacity:0;
+    z-index:100;
 }
 
 .slideRight.ng-enter.ng-enter-active {
     transition-property: all;
     transform: translate3d(0,0,0);
+    opacity:1;
 }
 
 .slideRight.ng-leave {
     transition-property: all;
     transform: translate3d(0,0,0);
+    opacity:1;
 }
 
 .slideRight.ng-leave.ng-leave-active {
     transition-property: all;
     transform: translate3d(100%,0,0);
+    opacity:0;
 }
-
-.main-view.ng-leave  { z-index:9999; }
-.main-view.ng-enter  { z-index:8888; }
