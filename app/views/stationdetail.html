@@ -3,8 +3,8 @@
 
         <h1>{{station.stationName}}</h1>
 
-        <img ng-show="station" src="http://maps.googleapis.com/maps/api/staticmap?zoom=16&size=290x120&maptype=roadmap
-        &markers=color:red%7Clabel:%7C{{station.lat}},{{station.lng}}&sensor=false" />
+        <a href="http://www.google.com/maps?q={{station.lat}},{{station.lng}}"><img ng-show="station" src="http://maps.googleapis.com/maps/api/staticmap?zoom=16&size=290x120&maptype=roadmap
+        &markers=color:red%7Clabel:%7C{{station.lat}},{{station.lng}}&sensor=false" /></a>
 
 
         <div class="station-detail-data">
