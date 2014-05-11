@@ -5,7 +5,7 @@
 $highlight-color: #F7E9BA;
 $light-gray: #eee;
 $frame-color: #016ED3;
-$transitions-duration: 250ms;
+$transitions-duration: 400ms;
 
 html{
   height: 100%;
@@ -132,8 +132,11 @@ header {
 /*** transitions ***/
 
 .slideLeft, .slideRight {
-    transition-timing-function: ease;
-    transition-duration: $transitions-duration;
+    -webkit-transition:all ease-in-out $transitions-duration;
+  -moz-transition:all ease-in-out $transitions-duration;
+  -o-transition:all ease-in-out $transitions-duration;
+  transition:all ease-in-out $transitions-duration;
+  display:block!important;
 }
 
 .slideLeft.ng-enter {
@@ -188,3 +191,6 @@ header {
     transform: translate3d(100%,0,0);
     opacity:0;
 }
+
+main-view.ng-leave  { z-index:9999; }
+main-view.ng-enter  { z-index:8888; }
