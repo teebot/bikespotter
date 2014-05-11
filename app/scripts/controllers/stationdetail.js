@@ -7,14 +7,7 @@ angular.module('bikespotterApp')
 
     Stations.get(reqStationId).then(function(response) {
         $scope.station = response;
-
         $scope.transition = 'slideRight';
-
-        $scope.mapMarkers = [{
-            color: 'blue',
-            label: 'h',
-            coords: [response.lat, response.lng]
-        }];
     });
 
   });
