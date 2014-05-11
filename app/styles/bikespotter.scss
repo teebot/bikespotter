@@ -18,10 +18,14 @@ body {
 }
 
 header {
+    position: fixed;
+    width: 100%;
+    top: 0;
     background:$frame-color;
     color:white;
     padding:12px;
     text-align:center;
+    z-index:10000;
 
     h1 {
         margin:0;
@@ -36,6 +40,10 @@ header {
     color: $frame-color;
 }
 
+
+.main-view {
+    margin-top:46px;
+}
 
 .station {
     border:1px solid $light-gray;
