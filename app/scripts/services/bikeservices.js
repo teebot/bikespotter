@@ -6,7 +6,7 @@ bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory) {
 
     // tests can point to local copy 'scripts/bikeshare.json'
     // note: jsonp.jit.su is a proxy to add CORS headers
-    var ENDPOINT_URL = 'http://jsonp.jit.su/?callback=&url=http%3A%2F%2Fbayareabikeshare.com%2Fstations%2Fjson%2F';
+    var ENDPOINT_URL = 'http://localhost:58162/api/stations';
 
     var cache = $cacheFactory('bikeServicesCache');
 
@@ -33,8 +33,13 @@ bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory) {
         this.lng = rawStation.longitude;
         this.bikes = rawStation.availableBikes;
         this.docks = rawStation.availableDocks;
-        this.distance = distance(rawStation.latitude, rawStation.longitude, position.lat, position.lng);
+        this.distance = distance(rawStation.latitude, rawStation.longitude, position.lat, position.lng, 'K');
     }
+
+    var httpConfig = { headers:  {
+            'Accept': 'application/json;odata=verbose'
+        }
+    };
 
     var all = function() {
         var stationsList;
@@ -49,9 +54,9 @@ bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory) {
                 return cachedStations;
             }
 
-            return $http.get(ENDPOINT_URL).then(function (response) {
+            return $http.get(ENDPOINT_URL, httpConfig).then(function (response) {
 
-                var stations = response.data.stationBeanList;
+                var stations = response.data;
 
                 // data transform
                 stationsList = stations.map(function(rawStation) {
@@ -85,7 +90,7 @@ bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory) {
             {
                 for(var i = 0; i < data.length; i++)
                 {
-                    if (data[i].id === stationId) {
+                    if (data[i].id == stationId) {
                         results.push(data[i]);
                     }
                 }

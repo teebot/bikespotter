@@ -3,11 +3,11 @@
 angular.module('bikespotterApp')
   .controller('StationDetailCtrl', function ($scope, $routeParams, Stations) {
 
-    var reqStationId = parseInt($routeParams.id);
+    var reqStationId = $routeParams.id;
 
     Stations.get(reqStationId).then(function(response) {
         $scope.station = response;
-        $scope.transition = 'slideRight';
+        //$scope.transition = 'slideRight';
     });
 
   });

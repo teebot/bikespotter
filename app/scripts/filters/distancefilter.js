@@ -2,18 +2,18 @@
 
 angular.module('bikespotterApp')
   .filter('distanceFilter', function () {
-    return function (distanceInMiles) {
-        if(!distanceInMiles || isNaN(distanceInMiles))
+    return function (distanceInKm) {
+        if(!distanceInKm || isNaN(distanceInKm))
         {
             return;
         }
 
-        if(distanceInMiles < 0.1)
+        if(distanceInKm < 0.1)
         {
-            var inFeet = distanceInMiles * 5280;
-            return Math.round(inFeet) + ' ft';
+            var inFeet = distanceInKm * 1000;
+            return Math.round(inFeet) + ' m';
         }
 
-      return (distanceInMiles.toFixed(1) + ' mi').replace('.0', '');
+      return (distanceInKm.toFixed(1) + ' km').replace('.0', '');
     };
   });
