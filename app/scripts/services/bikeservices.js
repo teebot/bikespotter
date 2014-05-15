@@ -40,10 +40,10 @@ bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory) {
         }
     };
 
-    var all = function(flushCache) {
+    var all = function(options) {
         var stationsList;
 
-        if(flushCache) {
+        if(options && options.clearCache) {
             cache.remove('stationsData');
         }
 
@@ -53,7 +53,6 @@ bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory) {
             var cachedStations = cache.get('stationsData');
             if(cachedStations)
             {
-                console.log('retrieved from cache');
                 return cachedStations;
             }
 

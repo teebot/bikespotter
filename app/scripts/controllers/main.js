@@ -10,7 +10,7 @@ angular.module('bikespotterApp')
     $scope.reload = function() {
         $scope.stations = null;
 
-        Stations.all(true).then(function(response) {
+        Stations.all({ clearCache : true }).then(function(response) {
           $scope.stations = response;
         });
     };
