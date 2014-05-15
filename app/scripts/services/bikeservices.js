@@ -5,7 +5,7 @@ var bikeServices = angular.module('bikeservices', ['ngResource']);
 bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory) {
 
     // tests can point to local copy 'scripts/bikeshare.json'
-    var ENDPOINT_URL = 'scripts/bikeshare.json';
+    var ENDPOINT_URL = 'http://api.bikesnearby.com/api/stations';
 
     var cache = $cacheFactory('bikeServicesCache');
 
@@ -40,12 +40,16 @@ bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory) {
         }
     };
 
-    var all = function() {
+    var all = function(flushCache) {
         var stationsList;
+
+        if(flushCache) {
+            cache.remove('stationsData');
+        }
 
         return geolocation.getLocation().then(function(data){
             var position = {lat:data.coords.latitude, lng:data.coords.longitude};
-            // var position = { lat: 37.7857158, lng: -122.4059115};
+
             var cachedStations = cache.get('stationsData');
             if(cachedStations)
             {
@@ -98,9 +102,28 @@ bikeServices.factory('Stations', function (geolocation, $http, $cacheFactory) {
         });
     };
 
+    var search = function(searchTerm)
+    {
+        return this.all().then(function(data){
+
+            var results = [];
+            if(data.length)
+            {
+                for(var i = 0; i < data.length; i++)
+                {
+                    if (data[i].stationName.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0) {
+                        results.push(data[i]);
+                    }
+                }
+            }
+            return results;
+        });
+    };
+
     return {
         all : all,
-        get : get
+        get : get,
+        search : search
     };
 
 });

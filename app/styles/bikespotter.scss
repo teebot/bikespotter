@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
 @import "compass/utilities";
+@import "compass/css3";
 
 
 $highlight-color: #F7E9BA;
@@ -32,12 +33,24 @@ header {
         padding:0;
         font-size:22px;
         font-weight:bold;
+        display:inline;
     }
 }
 
 .highlight {
     font-weight:bold;
     color: $frame-color;
+}
+
+.loading {
+    margin: 50px auto;
+    width: 120px;
+    text-align: center;
+    background: $highlight-color;
+    font-weight:bold;
+    font-size:26px;
+    color:gray;
+    @include border-radius(3px, 3px);
 }
 
 
@@ -103,6 +116,10 @@ header {
     }
 }
 
+.station-search {
+    margin-top: 24px;
+}
+
 
 .back-to-list {
     padding:14px;
@@ -122,83 +139,52 @@ header {
     }
 }
 
-
-
-
-
-
-
-
-
-
+.button-icon {
+    margin-top: 0px;
+    padding: 4px;
+    /*border: 1px solid tint($frame-color, 60%);*/
+    background: shade($frame-color, 20%);
+    border-radius: 2px;
+    cursor: pointer;
+}
 
 .clearfix { clear:both; }
 
 
 
+/** CSS ANIMATIONS **/
 
-/*** transitions ***/
+.blink_me {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
 
-.slideLeft, .slideRight {
-    -webkit-transition:all ease-in-out $transitions-duration;
-  -moz-transition:all ease-in-out $transitions-duration;
-  -o-transition:all ease-in-out $transitions-duration;
-  transition:all ease-in-out $transitions-duration;
-  display:block!important;
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
-.slideLeft.ng-enter {
-    transition-property: none;
-    transform: translate3d(100%,0,0);
-    opacity:0;
-    z-index:100;
+@-moz-keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
 }
 
-.slideLeft.ng-enter.ng-enter-active {
-    transition-property: all;
-    transform: translate3d(0,0,0);
-    opacity:0;
+@-webkit-keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
 }
 
-.slideLeft.ng-leave {
-    transition-property: all;
-    transform: translate3d(0,0,0);
-    z-index:101;
-    opacity:1;
+@keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
 }
-
-.slideLeft.ng-leave.ng-leave-active {
-    transition-property: all;
-    transform: translate3d(-100%,0,0);
-    opacity:0;
-}
-
-
-
-.slideRight.ng-enter {
-    transition-property: none;
-    transform: translate3d(-100%,0,0);
-    opacity:0;
-    z-index:100;
-}
-
-.slideRight.ng-enter.ng-enter-active {
-    transition-property: all;
-    transform: translate3d(0,0,0);
-    opacity:1;
-}
-
-.slideRight.ng-leave {
-    transition-property: all;
-    transform: translate3d(0,0,0);
-    opacity:1;
-}
-
-.slideRight.ng-leave.ng-leave-active {
-    transition-property: all;
-    transform: translate3d(100%,0,0);
-    opacity:0;
-}
-
-main-view.ng-leave  { z-index:9999; }
-main-view.ng-enter  { z-index:8888; }

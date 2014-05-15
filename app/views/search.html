@@ -1,0 +1,18 @@
+<header>
+    <div class="container">
+        <div class="button-icon pull-left glyphicon glyphicon-arrow-left" ng-click="go('/')"></div>
+        <h1>Villo Stations</h1>
+    </div>
+</header>
+
+<div class="container">
+    <div class="station-search">
+        <form role="form">
+          <div class="form-group">
+            <input ng-model="search" class="form-control" ui-event="{keyup: 'onSearchKeyUp($event)'}" placeholder="station name or neighborhood" />
+          </div>
+        </form>
+
+        <div stations></div>
+    </div>
+</div>

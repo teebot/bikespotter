@@ -1,19 +1,15 @@
+<header>
+    <div class="container">
+        <div class="button-icon pull-left glyphicon glyphicon-repeat" ng-click="reload()"></div>
+        <h1>Villo Stations</h1>
+        <div class="button-icon pull-right glyphicon glyphicon-search"  ng-click="go('/search')"></div>
+    </div>
+</header>
+
 <div class="container">
     <div class="row">
-        <div class="station" ng-repeat="station in stations">
-            <a id="{{station.id}}"></a>
-            <div ng-click="go('/stationDetail/' + station.id)">
-                <div class="station-title">
-                    <div class="station-title-name">{{station.stationName}}</div>
-                    <div class="station-title-caption">{{station.distance | distanceFilter}}</div>
-                </div>
-                <div class="station-data">
-                    <span class="highlight">{{station.bikes}}</span> / {{station.docks}}
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
+        <div class="loading blink_me" ng-show="!stations || !stations.length">LOADING</div>
+
+        <div stations></div>
     </div>
-
-
 </div>

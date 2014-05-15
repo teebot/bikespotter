@@ -7,10 +7,11 @@ angular.module('bikespotterApp')
         $scope.stations = response;
     });
 
-    $scope.go = function (path) {
-        $location.path(path);
+    $scope.reload = function() {
+        $scope.stations = null;
+
+        Stations.all(true).then(function(response) {
+          $scope.stations = response;
+        });
     };
-
-    //$scope.transition = 'slideLeft';
-
   });

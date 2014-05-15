@@ -8,7 +8,8 @@ angular
     'ngRoute',
     'ngAnimate',
     'geolocation',
-    'bikeservices'
+    'bikeservices',
+    'ui.event'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -20,7 +21,16 @@ angular
         templateUrl: 'views/stationdetail.html',
         controller: 'StationDetailCtrl'
       })
+      .when('/search', {
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .run(function($rootScope, $location) {
+    $rootScope.go = function (path) {
+        $location.path(path);
+    };
   });
